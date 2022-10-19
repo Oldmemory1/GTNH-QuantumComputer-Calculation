@@ -6,6 +6,8 @@
 using namespace std;
 #define OK 1
 #define Broken 0
+#define GreaterThanTheMaximumValue -1
+#define SmallerThanTheMinimumValue -1
 class Component{
 	private:
 	float heat;
@@ -53,5 +55,18 @@ class QuantumComputer{
 		}
 		return OK;
 	}
-	
+	void SetComponentNumber(int number){
+		if(number>4){
+			throw GreaterThanTheMaximumValue;
+		}else if(number<=0){
+			throw SmallerThanTheMinimumValue;
+		}else{
+			for(int i=number;i<4;i++){
+				this->Array[i].SetData(0,0,10000);
+			}
+		}
+	}
 }; 
+int main(){
+	
+} 
