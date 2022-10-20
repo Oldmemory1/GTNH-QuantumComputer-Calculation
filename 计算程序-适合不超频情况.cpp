@@ -159,7 +159,7 @@ int main(){
     	int Status=1;
     	int tempdata1;
     	int tempdata2;
-    	for(int j=0;j<600;j++){
+    	for(int j=0;j<6000;j++){
     	    AComputer->CalcComputationPowerAndHeat();
     		if(j%2==0){
     			tempdata1=AComputer->GetNowHeat();
