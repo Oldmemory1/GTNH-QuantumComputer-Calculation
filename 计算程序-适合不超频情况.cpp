@@ -154,8 +154,8 @@ int main(){
     	printf("请按照发热量，热效率，最大承受热量，提供算力的顺序输入组件的属性：\n") ;
     	QuantumComputer* AComputer=new QuantumComputer;
         AComputer->Initialization(ComponentNum);
-    	//AComputer->GetComponentData();
-    	AComputer->PrintComponentData();
+    	AComputer->GetComponentData();
+    	//AComputer->PrintComponentData();
     	int Status=1;
     	int tempdata1;
     	int tempdata2;
