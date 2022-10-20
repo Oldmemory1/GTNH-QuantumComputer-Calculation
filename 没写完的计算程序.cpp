@@ -1,4 +1,3 @@
-#include<iostream>
 #include<cstdio>
 #include<cstdlib>
 #include<iostream>
@@ -40,6 +39,7 @@ class QuantumComputer{
 	private:
 	int MaxHeat;
 	int NowHeat;
+	int ComponentNumber;
 	public:
 	void SetMaxHeat(int a){
 		this->MaxHeat=a;
@@ -55,18 +55,35 @@ class QuantumComputer{
 		}
 		return OK;
 	}
-	void SetComponentNumber(int number){
-		if(number>4){
-			throw GreaterThanTheMaximumValue;
-		}else if(number<=0){
-			throw SmallerThanTheMinimumValue;
-		}else{
-			for(int i=number;i<4;i++){
+	void Initialization(int number){
+
+			for(int i=0;i<4;i++){
 				this->Array[i].SetData(0,0,10000);
 			}
+			this->ComponentNumber=number;
+			this->NowHeat=0;
+			this->MaxHeat=10000; 
+
+	}
+	void GetComponentData(){
+		float num1,num2,num3;
+		for(int i=0;i<this->ComponentNumber;i++){
+		    scanf("%f %f %f",&num1,&num2,&num3);	
+			this->Array[i].SetData(num1,num2,num3);
+		}
+	}
+	void PrintComponentData(){
+		for(int i=0;i<4;i++){
+			printf("内部组件%d：%f %f %f %f\n",i,this->Array[i].GetHeat(),this->Array[i].GetCoEff(),this->Array[i].GetMaxHeat(),this->Array[i].GetStatus());
 		}
 	}
 }; 
 int main(){
-	
+	int ComponentNum;
+	printf("请输入内部的组件数目：\n");
+	scanf("%d",&ComponentNum);
+	QuantumComputer* AComputer=new QuantumComputer;
+	AComputer->Initialization(ComponentNum);
+	AComputer->GetComponentData();
+	AComputer->PrintComponentData();
 } 
