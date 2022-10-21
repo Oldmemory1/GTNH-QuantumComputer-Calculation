@@ -116,6 +116,7 @@ class QuantumComputer{
 			
 		}else{
 			//没写完的程序 
+			 //printf("nowheat:%d\n",this->NowHeat);
 			 srand((unsigned)(time(0)));
 			 //this->OutputComputation=0;
 			 float Randomnumber1=static_cast <float> (rand()) / static_cast <float> (RAND_MAX);;
@@ -142,6 +143,7 @@ class QuantumComputer{
 			 change=ceil(ChangeHeat1);
 			 //printf("change:%d\n",change);
 			 this->NowHeat=this->NowHeat+change; 
+			 //printf("nowheat:%d\n",this->NowHeat);
 		}
 
 
@@ -150,7 +152,12 @@ class QuantumComputer{
 		float ChangeHeat2=0;
 		if(this->NowHeat>0){
 			for(int i=0;i<4;i++){
-				ChangeHeat2=ChangeHeat2+this->Array[i].GetHeat()*this->NowHeat/(float)10000;
+				if(this->Array[i].GetHeat()<0){
+					ChangeHeat2=ChangeHeat2+this->Array[i].GetHeat()*this->NowHeat/(float)10000;			
+				}else{
+					continue;
+				}
+
 			}
 		}
 		//printf("数据：%f",ChangeHeat2);
@@ -171,11 +178,11 @@ class QuantumComputer{
 	} 
 
 	int GetComponentStatus(){
-		/*for(int i=0;i<4;i++){
+		for(int i=0;i<4;i++){
 			if(this->Array[i].GetMaxHeat()<(float)this->NowHeat||this->NowHeat>this->MaxHeat){
 				return Broken;
 			}
-		}*/
+		}
 		if(this->NowHeat>10000){
 			return Broken;
 		}else{
@@ -186,8 +193,6 @@ class QuantumComputer{
 }; 
 int main(){
 	int judge=0;
-	
-	
 	while(true){
 	printf("输入1启动运算程序，输入0退出运算程序\n");
 	scanf("%d",&judge);
